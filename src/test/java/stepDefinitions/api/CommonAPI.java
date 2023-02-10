@@ -45,8 +45,9 @@ public class CommonAPI {
     @Before(order = 0)
     public void beforeAPIScenario() {
         spec = new RequestSpecBuilder()
-                .setBaseUri(ConfigReader.getProperty("base_url_jsonplaceholder"))
+                .setBaseUri(ConfigReader.getProperty("base_url_herokuapp"))
                 .build();
+        //her soruda hangi adres var ise, onu baseurl'de degistirmeyi unutma!!!
     }
 
 
@@ -70,8 +71,8 @@ public class CommonAPI {
 #     } 1112
          */
         PojoHerokuappBookingDates bookingDates1 = new PojoHerokuappBookingDates("2018-01-01","2019-01-01");
-        PojoHerokuappBooking pojoHerokuappBooking = new PojoHerokuappBooking("John","Smith",111,true,"Breakfast",bookingDates1);
-        pojoHerokuappExpectedBody = new PojoHerokuappExpectedBody(1112,pojoHerokuappBooking);
+        PojoHerokuappBooking pojoHerokuappBooking = new PojoHerokuappBooking("Elif","Smith",111,true,"Breakfast",bookingDates1);
+        pojoHerokuappExpectedBody = new PojoHerokuappExpectedBody(4027,pojoHerokuappBooking);
 
     }
     @Given("Herokuapp Api Get Request donen Response'i kaydet")
@@ -80,7 +81,7 @@ public class CommonAPI {
     }
     @Given("Herokuapp Api Get Request donen Response'i assert et")
     public void herokuapp_api_get_request_donen_response_i_assert_et() {
-        response.then().assertThat().statusCode(200).body("bookingid",hasItem(7699));
+        response.then().assertThat().statusCode(200).body("bookingid",hasItem(4027));
     }
 
     @Given("JsonPlaceHolder Api Put request icin gerekli URL ve Body hazirla")
